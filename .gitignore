@@ -1,0 +1,47 @@
+from flask import Flask, render_template_string
+from pyngrok import ngrok
+
+# Create Flask app
+app = Flask(__name__)
+
+# HTML page
+html_code = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Love Uhh</title>
+    <script>
+        function repeatMessage() {
+            let msgElement = document.getElementById("message");
+            let acceptBtn = document.getElementById("acceptBtn");
+            let interval = setInterval(() => {
+                msgElement.innerHTML += " I love uhh ❤️";
+            }, 1000);
+
+            acceptBtn.addEventListener("click", function() {
+                clearInterval(interval);
+                msgElement.innerHTML = "Thank you for accepting! ❤️";
+                acceptBtn.style.display = "none";
+            });
+        }
+    </script>
+</head>
+<body onload="repeatMessage()">
+    <h1>I Love Uhh</h1>
+    <p id="message">I love uhh ❤️</p>
+    <button id="acceptBtn">Accept</button>
+</body>
+</html>
+"""
+
+@app.route("/")
+def love_page():
+    return render_template_string(html_code)
+
+# Start Flask and expose using ngrok
+public_url = ngrok.connect(5000).public_url
+print(f"Public Link: {public_url}")
+
+app.run(port=5000)
