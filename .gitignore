@@ -47,3 +47,43 @@ public_url = ngrok.connect(5000).public_url
 print(f"Public Link: {public_url}")
 
 app.run(port=5000)
+-----------------------------------------------------------------------------------------------------------------
+
+
+End of code 
+
+if then also some error is coming then set up:
+
+
+Fix: Get & Set Your ngrok Authentication Token
+Sign Up for an ngrok Account (if you haven't already):
+
+Go to: ngrok Signup
+
+Create an account.
+
+Get Your ngrok Auth Token:
+
+After signing up, visit: Your ngrok Authtoken
+
+Copy your authtoken.
+
+Set Your Authtoken in Jupyter Notebook
+
+Run this command in a Jupyter cell (replace your-auth-token with your actual token):
+
+python
+Copy
+Edit
+!ngrok config add-authtoken your-auth-token
+Example (if your token is 1234567890abcdef):
+
+python
+Copy
+Edit
+!ngrok config add-authtoken 1234567890abcdef
+Restart Kernel & Run Your Flask App Again
+
+Restart your Jupyter Notebook kernel.
+
+Re-run the Flask app code.
